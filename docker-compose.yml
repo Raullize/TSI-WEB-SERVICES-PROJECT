@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: basketleague-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: basketleague
+      POSTGRES_PASSWORD: basketleague
+      POSTGRES_DB: basketleague
+    ports:
+      - "5432:5432"
+    volumes:
+      - basketleague_pgdata:/var/lib/postgresql/data
+
+volumes:
+  basketleague_pgdata:
