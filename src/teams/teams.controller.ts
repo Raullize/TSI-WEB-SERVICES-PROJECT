@@ -4,8 +4,8 @@ import { CreateTeamDto } from './dto/create-team.dto';
 import { UpdateTeamDto } from './dto/update-team.dto';
 import { TeamsService } from './teams.service';
 
-@ApiTags('Times')
-@Controller('times')
+@ApiTags('Teams')
+@Controller('teams')
 export class TeamsController {
   constructor(private readonly teamsService: TeamsService) {}
 
