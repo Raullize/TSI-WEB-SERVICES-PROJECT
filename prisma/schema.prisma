@@ -22,8 +22,12 @@ model Team {
   uniformColor String
   logoUrl      String
   players      Player[]
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+
+  homeMatches Match[] @relation("HomeTeamMatches")
+  awayMatches Match[] @relation("AwayTeamMatches")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("teams")
 }
@@ -39,4 +43,29 @@ model Player {
   updatedAt    DateTime       @updatedAt
 
   @@map("players")
+}
+
+enum MatchStatus {
+  SCHEDULED
+  FINISHED
+}
+
+model Match {
+  id       String      @id @default(cuid())
+  date     DateTime
+  location String
+  status   MatchStatus @default(SCHEDULED)
+
+  homeTeamId    String
+  homeTeam      Team   @relation("HomeTeamMatches", fields: [homeTeamId], references: [id], onDelete: Restrict)
+  homeTeamScore Int?   @default(0)
+
+  awayTeamId    String
+  awayTeam      Team   @relation("AwayTeamMatches", fields: [awayTeamId], references: [id], onDelete: Restrict)
+  awayTeamScore Int?   @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("matches")
 }
