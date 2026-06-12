@@ -8,32 +8,32 @@ export class CreateMatchDto {
   @IsNotEmpty()
   date: string;
 
-  @ApiProperty({ description: 'Local da partida', example: 'Sports Arena' })
+  @ApiProperty({ description: 'Local da partida', example: 'Dunk Park - Porto Alegre' })
   @IsString()
   @IsNotEmpty()
   location: string;
 
-  @ApiPropertyOptional({ description: 'Status da partida', enum: MatchStatus, default: MatchStatus.SCHEDULED })
+  @ApiPropertyOptional({ description: 'Status da partida', enum: MatchStatus, example: 'SCHEDULED', default: MatchStatus.SCHEDULED })
   @IsEnum(MatchStatus)
   @IsOptional()
   status?: MatchStatus;
 
-  @ApiProperty({ description: 'ID do time da casa' })
+  @ApiProperty({ description: 'ID do time da casa', example: 'team_id_here' })
   @IsString()
   @IsNotEmpty()
   homeTeamId: string;
 
-  @ApiPropertyOptional({ description: 'Pontuação do time da casa', default: 0 })
+  @ApiPropertyOptional({ description: 'Pontuação do time da casa', example: 0, default: 0 })
   @IsInt()
   @IsOptional()
   homeTeamScore?: number;
 
-  @ApiProperty({ description: 'ID do time visitante' })
+  @ApiProperty({ description: 'ID do time visitante', example: 'team_id_here' })
   @IsString()
   @IsNotEmpty()
   awayTeamId: string;
 
-  @ApiPropertyOptional({ description: 'Pontuação do time visitante', default: 0 })
+  @ApiPropertyOptional({ description: 'Pontuação do time visitante', example: 0, default: 0 })
   @IsInt()
   @IsOptional()
   awayTeamScore?: number;

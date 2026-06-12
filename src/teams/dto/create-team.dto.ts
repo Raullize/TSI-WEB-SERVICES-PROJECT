@@ -1,24 +1,24 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsString, IsUrl } from 'class-validator';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class CreateTeamDto {
-  @ApiProperty({ example: 'Basket Club' })
+  @ApiProperty({ description: 'Nome do time', example: 'Lakers' })
   @IsString()
   @IsNotEmpty()
   name: string;
 
-  @ApiProperty({ example: 'Curitiba' })
+  @ApiProperty({ description: 'Cidade do time', example: 'Los Angeles' })
   @IsString()
   @IsNotEmpty()
   city: string;
 
-  @ApiProperty({ example: 'Azul e Branco' })
+  @ApiProperty({ description: 'Cor principal do uniforme', example: '#FDB927' })
   @IsString()
   @IsNotEmpty()
   uniformColor: string;
 
-  @ApiProperty({ example: 'https://example.com/logo.png' })
+  @ApiPropertyOptional({ description: 'URL do logo do time', example: 'https://exemplo.com/logo.png' })
   @IsString()
-  @IsUrl()
-  logoUrl: string;
+  @IsOptional()
+  logoUrl?: string;
 }
