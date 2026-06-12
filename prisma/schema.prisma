@@ -20,7 +20,7 @@ model Team {
   name         String
   city         String
   uniformColor String
-  logoUrl      String
+  logoUrl      String?
   players      Player[]
 
   homeMatches Match[] @relation("HomeTeamMatches")
