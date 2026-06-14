@@ -17,6 +17,12 @@ export class PlayersController {
     return this.playersService.findAll(name, teamId);
   }
 
+  @Get(':id')
+  @ApiOperation({ summary: 'Busca um jogador pelo ID' })
+  findOne(@Param('id') id: string) {
+    return this.playersService.findOne(id);
+  }
+
   @Post()
   @ApiOperation({ summary: 'Cria um jogador' })
   create(@Body() createPlayerDto: CreatePlayerDto) {

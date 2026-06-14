@@ -11,6 +11,18 @@ export class TeamsService {
     return this.teamsRepository.findAll(name);
   }
 
+  async findOne(id: string) {
+    const team = await this.teamsRepository.findById(id);
+    if (!team) {
+      throw new NotFoundException({
+        statusCode: 404,
+        message: 'Time não encontrado',
+        error: 'Not Found',
+      });
+    }
+    return team;
+  }
+
   async create(createTeamDto: CreateTeamDto) {
     return this.teamsRepository.create(createTeamDto);
   }

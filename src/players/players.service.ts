@@ -15,6 +15,18 @@ export class PlayersService {
     return this.playersRepository.findAll(name, teamId);
   }
 
+  async findOne(id: string) {
+    const player = await this.playersRepository.findById(id);
+    if (!player) {
+      throw new NotFoundException({
+        statusCode: 404,
+        message: 'Jogador não encontrado',
+        error: 'Not Found',
+      });
+    }
+    return player;
+  }
+
   async create(createPlayerDto: CreatePlayerDto) {
     await this.ensureTeamExists(createPlayerDto.teamId);
     return this.playersRepository.create(createPlayerDto);

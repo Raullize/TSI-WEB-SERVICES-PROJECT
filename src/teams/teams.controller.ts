@@ -16,6 +16,12 @@ export class TeamsController {
     return this.teamsService.findAll(name);
   }
 
+  @Get(':id')
+  @ApiOperation({ summary: 'Busca um time pelo ID' })
+  findOne(@Param('id') id: string) {
+    return this.teamsService.findOne(id);
+  }
+
   @Post()
   @ApiOperation({ summary: 'Cria um time' })
   create(@Body() createTeamDto: CreateTeamDto) {
